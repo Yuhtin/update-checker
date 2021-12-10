@@ -25,7 +25,7 @@ dependencies {
     compileOnly spigot
     testCompileOnly spigot
 
-    implementation 'com.google.code.gson:gson:2.8.9'
+    compile 'com.google.code.gson:gson:2.8.9'
 
     api 'org.jetbrains:annotations:22.0.0'
 }
@@ -39,12 +39,10 @@ processResources {
 buildscript {
     repositories {
         jcenter()
-        mavenCentral()
     }
 
     dependencies {
         classpath 'com.github.jengelman.gradle.plugins:shadow:5.0.0'
-        classpath 'com.google.code.gson:gson:2.8.9'
     }
 }
 
