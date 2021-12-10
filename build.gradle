@@ -39,10 +39,12 @@ processResources {
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
     }
 
     dependencies {
         classpath 'com.github.jengelman.gradle.plugins:shadow:5.0.0'
+        classpath 'com.google.code.gson:gson:2.8.9'
     }
 }
 
