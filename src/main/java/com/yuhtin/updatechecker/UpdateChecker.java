@@ -42,9 +42,9 @@ public class UpdateChecker {
 
         connectionResolver.connect();
 
-        JsonElement element = JsonParser.parseString(connectionResolver.getResponse());
+        JsonElement element = new JsonParser().parse(connectionResolver.getResponse());
         JsonArray array = element.getAsJsonArray();
-        if (array.isEmpty()) return;
+        if (array.size() == 0) return;
 
         GithubRelease release = SERIALIZER.fromJson(array.get(0), GithubRelease.class);
         updateRelease(release);
