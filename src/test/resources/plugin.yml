@@ -1,0 +1,5 @@
+name: update-checker
+main: com.yuhtin.updatechecker.UpdateCheckerPlugin
+author: Yuhtin
+version: 1.0
+api-version: 1.13

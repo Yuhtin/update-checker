@@ -1,0 +1,59 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+apply plugin: 'java'
+apply plugin: 'java-library'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+group = 'com.yuhtin'
+version = '1.0.0'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+repositories {
+    mavenCentral()
+
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://oss.sonatype.org/content/groups/public/' }
+}
+
+dependencies {
+    def spigot = 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
+    compileOnly spigot
+    testCompileOnly spigot
+
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    api 'org.jetbrains:annotations:22.0.0'
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        filter ReplaceTokens, tokens: [version: version]
+    }
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:5.0.0'
+    }
+}
+
+def defaultJarName = project.name + '-' + project.version
+
+shadowJar {
+    archiveName("${defaultJarName}.jar")
+}
+tasks.build.dependsOn shadowJar
+
+task buildTest(type: Jar) {
+    from sourceSets.main.output
+    from sourceSets.test.output
+}
