@@ -45,7 +45,7 @@ public class GithubRelease {
         return commit;
     }
 
-    static class Commit {
+    public static class Commit {
         public Commit(String sha, String url) {
             this.sha = sha;
             this.url = url;
@@ -54,10 +54,12 @@ public class GithubRelease {
         private final String sha;
         private final String url;
 
+        @Nullable
         public String getSha() {
             return sha;
         }
 
+        @Nullable
         public String getUrl() {
             return url;
         }

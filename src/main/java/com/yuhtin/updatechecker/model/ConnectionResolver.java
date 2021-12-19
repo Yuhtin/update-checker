@@ -31,7 +31,7 @@ public class ConnectionResolver {
             while ((line = reader.readLine()) != null) responseContent.append(line);
             reader.close();
         } catch (IOException exception) {
-            exception.printStackTrace();
+            return;
         }
 
         response = responseContent.toString();
