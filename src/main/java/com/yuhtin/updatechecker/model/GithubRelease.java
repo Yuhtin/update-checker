@@ -1,68 +1,37 @@
 package com.yuhtin.updatechecker.model;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 public class GithubRelease {
 
-    public GithubRelease(String name, String zipball_url, String tarball_url, String node_id, Commit commit) {
+    private final String name;
+    private final String tag_name;
+    private final String html_url;
+    private final boolean prerelease;
+    private final boolean draft;
+    public GithubRelease(String name, String tag_name, String html_url, boolean prerelease, boolean draft) {
         this.name = name;
-        this.zipball_url = zipball_url;
-        this.tarball_url = tarball_url;
-        this.node_id = node_id;
-        this.commit = commit;
+        this.html_url = html_url;
+        this.tag_name = tag_name;
+        this.prerelease = prerelease;
+        this.draft = draft;
     }
 
-    private final String name;
-    private final String zipball_url;
-    private final String tarball_url;
-    private final String node_id;
-
-    private final Commit commit;
-
-    @NotNull
-    public String getVersion() {
+    public String getReleaseName() {
         return name;
     }
 
-    @Nullable
-    public String getZipball_url() {
-        return zipball_url;
+    public String getVersion() {
+        return tag_name;
     }
 
-    @Nullable
-    public String getTarball_url() {
-        return tarball_url;
+    public String getDownloadURL() {
+        return html_url;
     }
 
-    @Nullable
-    public String getNode_id() {
-        return node_id;
+    public boolean isPreRelease() {
+        return prerelease;
     }
 
-    @Nullable
-    public Commit getCommit() {
-        return commit;
-    }
-
-    public static class Commit {
-        public Commit(String sha, String url) {
-            this.sha = sha;
-            this.url = url;
-        }
-
-        private final String sha;
-        private final String url;
-
-        @Nullable
-        public String getSha() {
-            return sha;
-        }
-
-        @Nullable
-        public String getUrl() {
-            return url;
-        }
-
+    public boolean isDraft() {
+        return draft;
     }
 }

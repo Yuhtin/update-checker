@@ -1,5 +1,6 @@
 package com.yuhtin.updatechecker;
 
+import com.yuhtin.updatechecker.model.GithubRelease;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class UpdateCheckerPlugin extends JavaPlugin {
@@ -10,9 +11,11 @@ public class UpdateCheckerPlugin extends JavaPlugin {
         updateChecker.check();
 
         if (updateChecker.canUpdate()) {
+            GithubRelease lastRelease = updateChecker.getLastRelease();
+
             getLogger().info("This plugin needs to be updated");
-            getLogger().info("New version: " + updateChecker.getMoreRecentVersion());
-            getLogger().info("Download: " + updateChecker.getDownloadLink());
+            getLogger().info("New version: " + lastRelease.getVersion());
+            getLogger().info("Download: " + lastRelease.getDownloadURL());
         } else {
             getLogger().info("This plugin is up to date");
         }
