@@ -60,6 +60,6 @@ public class UpdateChecker {
     }
 
     public boolean canUpdate() {
-        return lastRelease != null && lastRelease.getVersion().equalsIgnoreCase(currentVersion);
+        return lastRelease != null && !lastRelease.getVersion().equalsIgnoreCase(currentVersion);
     }
 }
